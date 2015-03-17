@@ -11,19 +11,20 @@ namespace ShapeLibrary
 	class Shape
 	{
 	public:
-		Shape(IWindowAPI &_windowAPI);
+		Shape(IWindowAPI &_windowAPI, Color color = Color::WHITE, Color visibility = Color::VISIBLE);
 		virtual Point add(Point _point);
 		virtual void draw();
 		virtual Color setLineColor(Color _color);
-		virtual void getLineColor();
+		virtual Color getLineColor();
 		virtual Color setFillColor(Color _color);
-		virtual void getFillColor();
-		virtual void getPoint();
-		virtual void getNumberOfPoints();
+		virtual Color getFillColor();
+		virtual Point getPoint();
+		virtual int getNumberOfPoints();
 	private:
 		IWindowAPI * windowAPI;
 		vector<Point> points;
 		Color lineColor;
 		Color fillColor;
+		int nbPoints;
 	};
 }
