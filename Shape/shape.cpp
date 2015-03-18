@@ -10,11 +10,10 @@ Shape::Shape(IWindowAPI &_windowAPI, Color color, Color visibility)
 	nbPoints = 0;
 }
 
-Point Shape::add(Point _point)
+void Shape::add(Point _point)
 {
 	nbPoints++;
 	points.push_back(_point);
-	return _point;
 }
 
 void Shape::draw()
@@ -46,9 +45,9 @@ Color Shape::getFillColor()
 	return fillColor;
 }
 
-Point Shape::getPoint()
+Point Shape::getPoint(int _index)
 {
-	return points.back();
+	return points.at(_index);
 }
 
 int Shape::getNumberOfPoints()

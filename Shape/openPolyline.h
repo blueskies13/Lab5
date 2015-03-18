@@ -7,11 +7,11 @@ namespace ShapeLibrary
 	{
 	public:
 		OpenPolyline(IWindowAPI &_windowAPI, Color color = Color::WHITE, Color visibility = Color::VISIBLE);
-		Point add(Point _point);
+		void add(Point _point);
 		void draw();
 		Color setLineColor(Color _color);
 	    Color getLineColor();
-		Point getPoint();
+		Point getPoint(int _index);
 		int getNumberOfPoints();
 	private:
 		vector<Point> points;

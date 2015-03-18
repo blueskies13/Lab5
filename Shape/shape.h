@@ -12,13 +12,13 @@ namespace ShapeLibrary
 	{
 	public:
 		Shape(IWindowAPI &_windowAPI, Color color = Color::WHITE, Color visibility = Color::VISIBLE);
-		virtual Point add(Point _point);
+		virtual void add(Point _point);
 		virtual void draw();
 		virtual Color setLineColor(Color _color);
 		virtual Color getLineColor();
 		virtual Color setFillColor(Color _color);
 		virtual Color getFillColor();
-		virtual Point getPoint();
+		virtual Point getPoint(int _index);
 		virtual int getNumberOfPoints();
 	private:
 		IWindowAPI * windowAPI;

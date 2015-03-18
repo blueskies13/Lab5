@@ -10,11 +10,10 @@ OpenPolyline::OpenPolyline(IWindowAPI &_windowAPI, Color color, Color visibility
 	nbPoints = 0;
 }
 
-Point OpenPolyline::add(Point _point)
+void OpenPolyline::add(Point _point)
 {
 	nbPoints++;
 	points.push_back(_point);
-	return _point;
 }
 
 void OpenPolyline::draw()
@@ -36,9 +35,9 @@ Color OpenPolyline::getLineColor()
 	return lineColor;
 }
 
-Point OpenPolyline::getPoint()
+Point OpenPolyline::getPoint(int _index)
 {
-	return points.back();
+	return points.at(_index);
 }
 
 int OpenPolyline::getNumberOfPoints()
