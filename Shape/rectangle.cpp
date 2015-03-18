@@ -8,7 +8,6 @@ Rectangle::Rectangle(IWindowAPI &_windowAPI, Color color, Color visibility)
 	windowAPI = &_windowAPI;
 	lineColor = color;
 	fillColor = visibility;
-	nbPoints = 0;
 }
 
 void Rectangle::draw()
@@ -22,8 +21,7 @@ void Rectangle::draw()
 
 Point Rectangle::setPosition(Point _position)
 {
-	if (nbPoints >= 1){ throw runtime_error("Il ne peux y avoir un point par rectangle."); }
-	nbPoints++;
+	if (points.size() >= 1){ throw runtime_error("Il ne peux y avoir un point par rectangle."); }
 	points.push_back(_position);
 	return _position;
 }
@@ -58,14 +56,4 @@ Color Rectangle::getFillColor()
 Color Rectangle::getLineColor()
 {
 	return lineColor;
-}
-
-Point Rectangle::getPoint(int _index)
-{
-	return points.at(_index);
-}
-
-int Rectangle::getNumberOfPoints()
-{
-	return nbPoints;
 }

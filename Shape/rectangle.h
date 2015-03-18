@@ -10,8 +10,6 @@ namespace ShapeLibrary
 		void draw();
 		Color setLineColor(Color _color);
 		Color getLineColor();
-		Point getPoint(int _index);
-		int getNumberOfPoints();
 		int setHeight(int _height);
 		int setWidth(int _width);
 		Point setPosition(Point _position);
@@ -22,7 +20,6 @@ namespace ShapeLibrary
 		IWindowAPI * windowAPI;
 		Color lineColor;
 		Color fillColor;
-		int nbPoints;
 		int height;
 		int width;
 	};
