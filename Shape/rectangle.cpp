@@ -1,59 +1,52 @@
 #include "stdafx.h"
+#include "rectangle.h"
 
 using namespace ShapeLibrary;
 
-Rectangle::Rectangle(IWindowAPI &_windowAPI, Color color, Color visibility)
-	:Shape(_windowAPI)
+Rectangle::Rectangle(IWindowAPI& _windowAPI) :
+width(1),
+height(1)
 {
 	windowAPI = &_windowAPI;
-	lineColor = color;
-	fillColor = visibility;
+	lineColor = Color::WHITE;
+	fillColor = Color::INVISIBLE;
+}
+
+Rectangle::~Rectangle()
+{
+}
+
+void Rectangle::add(Point _point)
+{
+	throw runtime_error("Impossible de rajouter un point sur une rectangle.");
+}
+
+void Rectangle::setPosition(Point _point)
+{
+	if (points.size() > 0)
+	{
+		points.pop_back();
+	}
+	points.push_back(_point);
+}
+
+void Rectangle::setHeight(int _height)
+{
+	if (_height <= 0) throw invalid_argument("Une hauteur plus petite ou égal à 0 est impossible");
+	height = _height;
+}
+
+void Rectangle::setWidth(int _width)
+{
+	if (_width <= 0) throw invalid_argument("Une largeur de 0 est impossible");
+	width = _width;
 }
 
 void Rectangle::draw()
 {
-	if (points.size() < 1){ throw runtime_error("Aucune position set."); }
+	if (points.size() == 0) throw runtime_error("Il doit y avoir au moins 1 point");
 	windowAPI->setDrawingColor(lineColor);
-	windowAPI->drawRectangle(points.back(), width, height);
+	windowAPI->drawRectangle(points[0], width, height);
 	windowAPI->setDrawingColor(fillColor);
-	windowAPI->fillRectangle(points.back(), width, height);
-}
-
-Point Rectangle::setPosition(Point _position)
-{
-	if (points.size() >= 1){ throw runtime_error("Il ne peux y avoir un point par rectangle."); }
-	points.push_back(_position);
-	return _position;
-}
-
-int Rectangle::setHeight(int _height)
-{
-	if (_height < 0){ throw invalid_argument("Negative height is not possible"); }
-	return height = _height;
-}
-
-int Rectangle::setWidth(int _width)
-{
-	if (_width < 0){ throw invalid_argument("Negative width is not possible"); }
-	return width = _width;
-}
-
-Color Rectangle::setLineColor(Color _color)
-{
-	return lineColor = _color;
-}
-
-Color Rectangle::setFillColor(Color _color)
-{
-	return fillColor = _color;
-}
-
-Color Rectangle::getFillColor()
-{
-	return fillColor;
-}
-
-Color Rectangle::getLineColor()
-{
-	return lineColor;
+	windowAPI->fillRectangle(points[0], width, height);
 }

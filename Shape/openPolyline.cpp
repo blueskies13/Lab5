@@ -1,46 +1,33 @@
 #include "stdafx.h"
+#include "openPolyline.h"
 
 using namespace ShapeLibrary;
 
-OpenPolyline::OpenPolyline(IWindowAPI &_windowAPI, Color color, Color visibility)
-	:Shape(_windowAPI)
+OpenPolyline::OpenPolyline()
 {
-	windowAPI = &_windowAPI;
-	lineColor = color;
-	nbPoints = 0;
+
 }
 
-void OpenPolyline::add(Point _point)
+OpenPolyline::OpenPolyline(IWindowAPI& _windowAPI)
 {
-	nbPoints++;
-	points.push_back(_point);
+	windowAPI = &_windowAPI;
+	lineColor = Color::WHITE;
+	fillColor = Color::INVISIBLE;
+}
+
+OpenPolyline::~OpenPolyline()
+{
 }
 
 void OpenPolyline::draw()
 {
-	if (points.size() < 2) { throw runtime_error("Impossible de dessiner. Il y a moins de 2 points."); }
+	if (points.size() < 2) throw runtime_error("Minimum de deux points pour pouvoir dessiner");
 	windowAPI->setDrawingColor(lineColor);
-	for (int i = 0; i < points.size()-1;i++)
+	for (int i = 0; i < points.size(); i++)
 	{
-		windowAPI->drawLine(points.at(i), points.at(i + 1));
+		if ((i + 1) < points.size())
+		{
+			windowAPI->drawLine(points[i], points[i + 1]);
+		}
 	}
-}
-
-Color OpenPolyline::setLineColor(Color _color)
-{
-	return lineColor = _color;
-}
-Color OpenPolyline::getLineColor()
-{
-	return lineColor;
-}
-
-Point OpenPolyline::getPoint(int _index)
-{
-	return points.at(_index);
-}
-
-int OpenPolyline::getNumberOfPoints()
-{
-	return nbPoints;
 }

@@ -2,32 +2,26 @@
 
 using namespace ShapeLibrary;
 
-Shape::Shape(IWindowAPI &_windowAPI, Color color, Color visibility)
+Shape::Shape()
 {
-	*windowAPI = _windowAPI;
-	lineColor = color;
-	fillColor = visibility;
-	nbPoints = 0;
+}
+
+Shape::~Shape()
+{
 }
 
 void Shape::add(Point _point)
 {
-	nbPoints++;
 	points.push_back(_point);
 }
 
 void Shape::draw()
 {
-	windowAPI->setDrawingColor(lineColor);
-	for (int i = 0; i < points.size(); i++)
-	{
-		windowAPI->drawLine(points.at(i), points.at(i + 1));
-	}
 }
 
-Color Shape::setLineColor(Color _color)
+void Shape::setLineColor(Color _color)
 {
-	return lineColor = _color;
+	lineColor = _color;
 }
 
 Color Shape::getLineColor()
@@ -35,9 +29,9 @@ Color Shape::getLineColor()
 	return lineColor;
 }
 
-Color Shape::setFillColor(Color _color)
+void Shape::setFillColor(Color _color)
 {
-	return fillColor = _color;
+	fillColor = _color;
 }
 
 Color Shape::getFillColor()
@@ -47,10 +41,10 @@ Color Shape::getFillColor()
 
 Point Shape::getPoint(int _index)
 {
-	return points.at(_index);
+	return points[_index];
 }
 
 int Shape::getNumberOfPoints()
 {
-	return nbPoints;
+	return points.size();
 }

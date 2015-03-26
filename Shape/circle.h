@@ -3,22 +3,19 @@
 
 namespace ShapeLibrary
 {
-	class Circle: public Shape
+	class Circle : public Shape
 	{
 	public:
-		Circle(IWindowAPI &_windowAPI, Color color = Color::WHITE, Color visibility = Color::VISIBLE);
+		Circle(IWindowAPI& _windowAPI);
+		~Circle();
+
+		void add(Point _point);
+		void setCenter(Point _point);
+		void setRadius(int _radius);
 		void draw();
-		Color setLineColor(Color _color);
-		Color getLineColor();
-		Point setCenter(Point _position);
-		int setRadius(int _radius);
-		Color setFillColor(Color _color);
-		Color getFillColor();
+
 	private:
-		vector<Point> points;
-		IWindowAPI * windowAPI;
-		Color lineColor;
-		Color fillColor;
 		int radius;
+
 	};
 }

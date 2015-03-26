@@ -3,24 +3,21 @@
 
 namespace ShapeLibrary
 {
-	class Rectangle: public Shape
+	class Rectangle : public Shape
 	{
 	public:
-		Rectangle(IWindowAPI &_windowAPI, Color color = Color::WHITE, Color visibility = Color::VISIBLE);
+		Rectangle(IWindowAPI& _windowAPI);
+		~Rectangle();
+
+		void add(Point _point);
+		void setPosition(Point _point);
+		void setHeight(int _height);
+		void setWidth(int _width);
 		void draw();
-		Color setLineColor(Color _color);
-		Color getLineColor();
-		int setHeight(int _height);
-		int setWidth(int _width);
-		Point setPosition(Point _position);
-		Color setFillColor(Color _color);
-		Color getFillColor();
+
 	private:
-		vector<Point> points;
-		IWindowAPI * windowAPI;
-		Color lineColor;
-		Color fillColor;
 		int height;
 		int width;
+
 	};
 }
